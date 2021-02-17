@@ -1,1 +1,1 @@
-# Simple_Stack_in_C
+# Simple-Stack-in-C
