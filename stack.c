@@ -6,29 +6,35 @@ typedef struct Stack{
     struct Stack *next;
 }stack;
 
-stack *list = NULL;
+stack *head = NULL;
 
-void push(int n){
+stack *newNode(int data){
     stack *temp = malloc(sizeof(stack));
-    temp->data = n;
-    if (list == NULL){
-        list = temp;
-        list->next = NULL;
+    temp->data = data;
+    temp->next = NULL;
+    return temp;
+}
+
+void push(int data){
+    stack *temp = newNode(data);
+
+    if (head == NULL){
+        head = temp;
     }else{
-        temp->next = list;
-        list = temp;
+        temp->next = head;
+        head = temp;
     }
 }
 
 int pop(){
-    int n = 0;
-    if (list == NULL){
+    if (head == NULL){
         return -1; //meaning that the stack is empty
-    }else{
-        n = list->data;
-        list = list->next;
     }
-    return n;
+    stack* temp = head;
+    head = head->next;
+    int data = temp->data;
+    free(temp);
+    return data;
 }
 
 int main(int argc, char const *argv[]){
